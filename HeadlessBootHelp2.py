@@ -1,11 +1,6 @@
 #!/usr/bin/python3
 
 import sys
-
-# Just sorting out the library references for the OLED.  Bit messy - could be cleaned up later
-#sys.path.append('/usr/local/lib/python2.7/dist-packages/Adafruit_GPIO-1.0.0-py2.7.egg')
-#sys.path.append('/usr/local/lib/python2.7/dist-packages/Adafruit_SSD1306-1.6.0-py2.7.egg')
-#sys.path.append('/usr/local/lib/python2.7/dist-packages/Adafruit_PureIO-0.2.0-py2.7.egg')
 import Adafruit_SSD1306
 from subprocess import *
 
@@ -17,7 +12,6 @@ import time
 import re
  
  
-
 # Runs a system command
 def run_cmd(cmd):
     p = Popen(cmd, shell=True, stdout=PIPE)
@@ -44,10 +38,8 @@ def OLED_Print(StringToPrint, FontName, FontSize, ClearWidth, ClearHeight, Clear
 		disp.display()
 
 
-	
 # 128x64 display with hardware I2C - Setting it up. 
 disp = Adafruit_SSD1306.SSD1306_128_64(rst=24, i2c_address=0x3C)
-
 
 # Initialize library.
 try:
@@ -76,6 +68,7 @@ time.sleep(1)
 Continue =1
 
 while (Continue):
+	print (sys.argv[0])
 	# Get IP Address and format it.
 	IP_Address = run_cmd("hostname -I")
 	IP_String = "{}".format(IP_Address)
@@ -83,7 +76,8 @@ while (Continue):
 	
 	# Print it out to the screen.
 	OLED_Print(IP_String,"Verdana.ttf", 12, disp.width, disp.height, XLoc=0, YLoc=30)
-
+	print("IP Address: ", IP_String)
+	
 	# Get scan information
 	WiFiScan = run_cmd("iw wlan0 scan")
 	WiFiScanStr = "{}" .format(WiFiScan)
@@ -101,6 +95,7 @@ while (Continue):
 
 	# Display the associated SSID
 	OLED_Print(AssociatedSSIDStr,"Verdana.ttf", 12, disp.width, disp.height, Clear=0, XLoc=0, YLoc=45)
+	print("Current Associated WiFi: ", AssociatedSSIDStr)
 	
 	SSIDNum=0
 
