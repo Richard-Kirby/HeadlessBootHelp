@@ -29,3 +29,5 @@ Here is a presentation I gave at the London Raspberry Pint group.
 https://prezi.com/jzisapa8u6gz/off-to-raspberry-pint/
 
 Raspberry Pint Meetup http://www.meetup.com/Raspberry-Pint-London/
+
+2020 Update - Using Buster on a Pi 3A+, it was listing every SSID twice.  Probably something needs to be fixed.  Also not sure the WPA_Supplements part of it will still work.  Needs a good checkout and probably some code mods.  Code is not very good, but the basics are there.
